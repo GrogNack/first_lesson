@@ -3,11 +3,12 @@ from selenium import webdriver
 from selenium.common.exceptions import *
 from selenium_fixture import driver
 
-def login(driver):
+
+def login(driver, user, password):
     driver.find_element_by_id("username").clear()
-    driver.find_element_by_id("username").send_keys("admin")
+    driver.find_element_by_id("username").send_keys(user)
     driver.find_element_by_name("password").clear()
-    driver.find_element_by_name("password").send_keys("admin")
+    driver.find_element_by_name("password").send_keys(password)
     driver.find_element_by_name("submit").click()
 
 def logout(driver):
@@ -16,7 +17,7 @@ def logout(driver):
 
 def test_login(driver):
     driver.get("http://localhost/php4dvd/")
-    login(driver)
+    login(driver, "admin", "admin")
     logout(driver)
 
 
